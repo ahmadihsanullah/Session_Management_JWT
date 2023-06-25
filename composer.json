@@ -1,0 +1,19 @@
+{
+    "name": "guest1/session_management_jwt",
+    "description": "Belajar Session Magement dengan JWT",
+    "type": "no",
+    "autoload": {
+        "psr-4": {
+            "Guest1\\SessionManagementJwt\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ahmadihsanullah",
+            "email": "ahma21327ti@student.nurulfikri.ac.id"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^6.8"
+    }
+}
