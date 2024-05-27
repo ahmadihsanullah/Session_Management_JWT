@@ -1,14 +1,13 @@
 <?php
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
-
+require_once __DIR__ . './../utils/getConnection.php';
+require_once __DIR__ . './../utils/generaterandom.php';
 class Session
 {
-
     public function __construct(public string $username, public string $role)
     {
     }
-
 }
 
 class SessionManager
@@ -19,8 +18,16 @@ class SessionManager
     public static function login(string $username, string $password): bool
     {
         if ($username == "eko" && $password == "eko") {
+            //simpan ke dalam payload bukan session lagi
+            $connection = getConnection();
+            $session_generate = generateUUIDv4();
+
+            $sql = "INSERT INTO sessions_id(session_id) VALUES(?)";
+            $statement = $connection->prepare($sql);
+            $statement->execute([$session_generate]);
 
             $payload = [
+                "session_id" => $session_generate,
                 "username" => $username,
                 "role" => "customer"
             ];
